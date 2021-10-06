@@ -40,9 +40,3 @@ export class User extends Entity {
     super(data);
   }
 }
-
-export interface UserRelations {
-  // describe navigational properties here
-}
-
-export type UserWithRelations = User & UserRelations;
