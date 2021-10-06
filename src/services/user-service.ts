@@ -73,7 +73,6 @@ export class MyUserService implements UserService<User, Credentials>{
     validateCredentials(_.pick(userData, ['username', 'password']));
     userData.password = await this.hasher.hashPassword(userData.password)
     const savedUser = await this.userRepository.create(userData);
-    delete savedUser.password;
-    return savedUser;
+    return _.omit(savedUser, 'password')
   }
 }
