@@ -1,75 +1,71 @@
 {
-  "name": "auth",
-  "version": "1.0.0",
-  "description": "authentication and authorization",
+  "name": "@nexbus/auth",
+  "description": "Extension for the prototype of JWT authentication",
+  "version": "0.0.5",
   "keywords": [
-    "loopback-application",
-    "loopback"
+    "LoopBack",
+    "Authentication",
+    "jsonwebtoken"
   ],
+  "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "author": "IBM Corp. and LoopBack contributors",
+  "copyright.owner": "IBM Corp. and LoopBack contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/loopbackio/loopback-next.git",
+    "directory": "extensions/authentication-jwt"
+  },
   "engines": {
-    "node": ">=10"
+    "node": "14 || 16 || 18 || 19"
   },
   "scripts": {
     "build": "lb-tsc",
-    "build:watch": "lb-tsc --watch",
-    "lint": "npm run prettier:check && npm run eslint",
-    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
-    "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
-    "prettier:check": "npm run prettier:cli -- -l",
-    "prettier:fix": "npm run prettier:cli -- --write",
-    "eslint": "lb-eslint --report-unused-disable-directives .",
-    "eslint:fix": "npm run eslint -- --fix",
-    "pretest": "npm run clean && npm run build",
-    "test": "lb-mocha --allow-console-logs \"dist/__tests__\"",
-    "posttest": "npm run lint",
-    "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
-    "docker:build": "docker build -t auth .",
-    "docker:run": "docker run -p 3000:3000 -d auth",
-    "migrate": "node ./dist/migrate",
-    "prestart": "npm run build",
-    "start": "node -r source-map-support/register .",
-    "clean": "lb-clean dist *.tsbuildinfo .eslintcache"
+    "clean": "lb-clean loopback-authentication-jwt*.tgz dist *.tsbuildinfo package",
+    "pretest": "npm run build",
+    "test": "lb-mocha \"dist/__tests__/unit/*.js\" \"dist/__tests__/acceptance/*.js\"",
+    "verify": "npm pack && tar xf loopback-authentication-jwt*.tgz && tree package && npm run clean"
   },
-  "repository": {
-    "type": "git"
-  },
-  "author": "",
-  "license": "",
   "files": [
     "README.md",
     "dist",
     "src",
     "!*/__tests__"
   ],
+  "peerDependencies": {
+    "@loopback/authentication": "^9.0.7",
+    "@loopback/core": "^4.0.7",
+    "@loopback/rest": "^12.0.7"
+  },
   "dependencies": {
-    "@loopback/authentication": "^4.2.5",
-    "@loopback/authentication-jwt": "^0.3.1",
-    "@loopback/boot": "^2.3.1",
-    "@loopback/context": "^3.8.1",
-    "@loopback/core": "^2.7.0",
-    "@loopback/openapi-v3": "^3.4.1",
-    "@loopback/repository": "^2.5.1",
-    "@loopback/rest": "^5.0.1",
-    "@loopback/rest-explorer": "^2.2.2",
-    "@loopback/service-proxy": "^2.3.0",
-    "@types/bcryptjs": "^2.4.2",
-    "@types/lodash": "^4.14.152",
+    "@loopback/authorization": "^0.12.8",
+    "@loopback/security": "^0.8.7",
+    "@types/bcryptjs": "2.4.2",
     "bcryptjs": "^2.4.3",
-    "isemail": "^3.2.0",
-    "jsonwebtoken": "^8.5.1",
-    "loopback-connector-mysql": "^5.4.3",
-    "loopback-connector-postgresql": "^5.4.0",
-    "tslib": "^1.10.0"
+    "casbin": "^5.23.2",
+    "debug": "^4.3.4",
+    "jsonwebtoken": "^9.0.0",
+    "loopback-connector-postgresql": "^6.0.2"
   },
   "devDependencies": {
-    "@loopback/build": "^5.4.1",
-    "@loopback/eslint-config": "^7.0.1",
-    "@loopback/testlab": "^3.1.5",
-    "@types/node": "^10.17.24",
-    "eslint": "^7.0.0",
-    "source-map-support": "^0.5.19",
-    "typescript": "~3.9.3"
+    "@loopback/authentication": "^9.0.7",
+    "@loopback/boot": "^5.0.7",
+    "@loopback/build": "^9.0.7",
+    "@loopback/core": "^4.0.7",
+    "@loopback/eslint-config": "^13.0.7",
+    "@loopback/repository": "^5.1.2",
+    "@loopback/rest": "^12.0.7",
+    "@loopback/rest-explorer": "^5.0.7",
+    "@loopback/service-proxy": "^5.0.7",
+    "@loopback/testlab": "^5.0.7",
+    "@types/debug": "^4.1.7",
+    "@types/lodash": "^4.14.191",
+    "@types/node": "^14.18.36",
+    "lodash": "^4.17.21",
+    "typescript": "~4.9.4"
+  },
+  "publishConfig": {
+    "registry": "https://reg.nexpando.com"
   }
 }
