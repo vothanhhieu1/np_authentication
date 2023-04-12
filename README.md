@@ -1,3 +1,8 @@
+---
+title: Hieu
+---
+
+
 # Authentication in Loopback4
 
 [<img src="https://github.com/strongloop/loopback-next/raw/master/docs/site/imgs/branding/Powered-by-LoopBack-Badge-(blue)-@2x.png" alt="LoopBack" style="zoom: 50%;" />](http://loopback.io/)
